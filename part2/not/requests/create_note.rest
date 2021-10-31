@@ -1,7 +1,0 @@
-POST http://localhost:3001/api/notes
-Content-Type: application/json
-
-{
-    "content": "Great! VS Code REST Client is a pretty good tool for testing REST APIs",
-    "important": false
-}
