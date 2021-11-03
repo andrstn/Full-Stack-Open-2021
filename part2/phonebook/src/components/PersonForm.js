@@ -26,16 +26,26 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newNumber, setNew
               setNewName('')
               setNewNumber('')
             })
+            .catch(error => {
+              console.log(error.response.data)
+              setNotif(
+                `Invalid(1): ${error.response.data.error}`
+              )
+              setTimeout(() => {
+                setNotif(null)
+              }, 2000)
+            })
         }
         else if(add !== undefined) {
           
           if(add.number !== `${newNumber}`) {
             const changedNumber = {...add, number: `${newNumber}`}
+            console.log(changedNumber)
             if(window.confirm(`${changedNumber.name} already exists. Replace old number with the new one?`))
               personService
                 .update(changedNumber.id, changedNumber)
                 .then(returnedPerson => {
-                  setPersons(persons.map(person => person.id !== changedNumber.id ? person : returnedPerson))
+                  setPersons(persons.map(person => person.id !== changedNumber.id ? person : changedNumber))
                   setNotif(`Updated ${changedNumber.name}`)
                   setTimeout(() => {
                     setNotif(null)
@@ -45,12 +55,11 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newNumber, setNew
                 })
                 .catch(error => {
                   setNotif(
-                    `Invalid(1): Information of ${changedNumber.name} has already been removed from the server`
+                    `Invalid(1): ${error.response.data.error}`
                   )
                   setTimeout(() => {
                     setNotif(null)
                   }, 2000)
-                  setPersons(persons.filter(person => person.name !== `${changedNumber.name}`))
                 })
           }
           else{

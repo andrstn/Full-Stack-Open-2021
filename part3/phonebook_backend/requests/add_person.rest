@@ -1,7 +1,7 @@
-POST https://ghostly-cemetery-56881.herokuapp.com/api/persons
+POST http://localhost:3001/api/persons/618146166117e16b3464f012
 Content-Type: application/json
 
 {
-    "name": "artoy hellas",
-    "number": "23-5127-231"
+    "name": "Niccolo",
+    "number": "040-3452223"
 }

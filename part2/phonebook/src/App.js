@@ -41,15 +41,7 @@ const Notification = ({value}) => {
       </div>
     )
   }
-  else if(value.split(" ")[0] === 'Invalid(1):'){
-    notifStyle.color = 'red'
-    return (
-      <div style={notifStyle}>
-        {value}
-      </div>
-    )
-  }
-  else if(value.split(" ")[0] === 'Invalid(2):'){
+  else {
     notifStyle.color = 'red'
     return (
       <div style={notifStyle}>
